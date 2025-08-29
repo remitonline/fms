@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Bancaire - Remit Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #1a5276;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            padding: 5px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: #1a5276;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #1a5276;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dashboard {
+            text-align: center;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .balance {
+            font-size: 2.2rem;
+            color: #1a5276;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 10px 0;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .admin-section {
+            border-top: 2px solid #e1e5e9;
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+
+        .admin-section h3 {
+            color: #1a5276;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .user-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .user-info-admin {
+            flex: 1;
+        }
+
+        .user-info-admin h4 {
+            color: #1a5276;
+            margin-bottom: 5px;
+        }
+
+        .user-info-admin p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+            width: auto;
+            margin: 0;
+            border-radius: 6px;
+        }
+
+        .btn-approve {
+            background: #28a745;
+        }
+
+        .btn-reject {
+            background: #dc3545;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .user-card-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">
+        ← Retour au site principal
+    </a>
+
+    <div class="container">
+        <div class="logo">
+            <h1>🏦 Remit Online</h1>
+            <p>Interface Bancaire Sécurisée</p>
+        </div>
+
+        <!-- Section de connexion/inscription -->
+        <div id="authSection">
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('login')">Connexion</div>
+                <div class="tab" onclick="showTab('register')">Inscription</div>
+            </div>
+
+            <!-- Formulaire de connexion -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Mot de passe</label>
+                    <input type="password" id="loginPassword" required placeholder="Votre mot de passe">
+                </div>
+                <button type="submit" class="btn">Se connecter</button>
+            </form>
+
+            <!-- Formulaire d'inscription -->
+            <form id="registerForm" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="registerName">Nom complet</label>
+                    <input type="text" id="registerName" required placeholder="Jean Dupont">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="jean@exemple.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerPhone">Téléphone</label>
+                    <input type="tel" id="registerPhone" required placeholder="+33 1 23 45 67 89">
+                </div>
+                <div class="form-group">
+                    <label for="registerCountry">Pays</label>
+                    <select id="registerCountry" required>
+                        <option value="">Sélectionnez votre pays</option>
+                        <option value="FR">France</option>
+                        <option value="BJ">Bénin</option>
+                        <option value="SN">Sénégal</option>
+                        <option value="CI">Côte d'Ivoire</option>
+                        <option value="MA">Maroc</option>
+                        <option value="TN">Tunisie</option>
+                        <option value="ES">Espagne</option>
+                        <option value="OTHER">Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Mot de passe</label>
+                    <input type="password" id="registerPassword" required placeholder="Minimum 6 caractères">
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" id="registerConfirmPassword" required placeholder="Répétez le mot de passe">
+                </div>
+                <button type="submit" class="btn">Créer un compte</button>
+            </form>
+        </div>
+
+        <!-- Dashboard utilisateur -->
+        <div id="userDashboard" class="hidden">
+            <div class="dashboard">
+                <h2>Tableau de bord</h2>
+                <div class="user-info">
+                    <h3 id="userName">Nom de l'utilisateur</h3>
+                    <p id="userEmail">email@exemple.com</p>
+                    <div class="balance" id="userBalance">€ 0.00</div>
+                    <div class="status-badge" id="userStatus">En attente de validation</div>
+                </div>
+                <button class="btn" onclick="logout()">Se déconnecter</button>
+            </div>
+        </div>
+
+        <!-- Section admin -->
+        <div id="adminSection" class="hidden">
+            <div class="admin-section">
+                <h3>
+                    🔧 Administration
+                </h3>
+                <div id="pendingUsers" class="loading">
+                    Chargement des utilisateurs...
+                </div>
+                <button class="btn" onclick="refreshPendingUsers()" style="margin-top: 15px;">
+                    🔄 Actualiser
+                </button>
+            </div>
+        </div>
+
+        <!-- Zone d'alertes -->
+        <div id="alertZone"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
+        import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, updateDoc } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+
+        // Configuration Firebase - REMPLACEZ par votre configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyClPIcf1yKTYGNUTypdbebSVcnbNNxMDkU",
+            authDomain: "remit-online.firebaseapp.com",
+            projectId: "remit-online",
+            storageBucket: "remit-online.firebasestorage.app",
+            messagingSenderId: "652492874046",
+            appId: "1:652492874046:web:f597773576981c3a774c6f",
+            measurementId: "G-ER8YCCBS85"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Variables globales
+        let currentUser = null;
+        // REMPLACEZ 'votre-email@exemple.com' par votre vraie adresse email d'admin
+        const adminEmails = ['admin@remitonline.com', 'fmsremitonline@proton.me'];
+
+        // Fonctions d'interface
+        window.showTab = function(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.add('hidden'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + 'Form').classList.remove('hidden');
+        };
+
+        window.showAlert = function(message, type = 'info') {
+            const alertZone = document.getElementById('alertZone');
+            alertZone.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => alertZone.innerHTML = '', 6000);
+        };
+
+        // Inscription
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const phone = document.getElementById('registerPhone').value.trim();
+            const country = document.getElementById('registerCountry').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showAlert('Les mots de passe ne correspondent pas', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert('Le mot de passe doit contenir au moins 6 caractères', 'error');
+                return;
+            }
+
+            try {
+                showAlert('Création du compte en cours...', 'info');
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Sauvegarder les informations utilisateur dans Firestore
+                await setDoc(doc(db, 'users', user.uid), {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    country: country,
+                    status: 'pending',
+                    balance: 0,
+                    createdAt: new Date(),
+                    isAdmin: adminEmails.includes(email.toLowerCase())
+                });
+
+                showAlert('Compte créé avec succès! En attente de validation par un administrateur.', 'success');
+                showTab('login');
+                document.getElementById('registerForm').reset();
+                
+            } catch (error) {
+                console.error('Erreur inscription:', error);
+                let errorMessage = 'Erreur lors de la création du compte.';
+                
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'Cette adresse email est déjà utilisée.';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'Le mot de passe est trop faible.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Adresse email invalide.';
+                }
+                
+                showAlert(errorMessage, 'error');
+            }
+        });
+
+        // Connexion
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                showAlert('Connexion en cours...', 'info');
+                await signInWithEmailAndPassword(auth, email, password);
+                showAlert('Connexion réussie!', 'success');
+                
+            } catch (error) {
+                console.error('Erreur connexion:', error);
+                let errorMessage = 'Erreur de connexion.';
+                
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'Aucun compte trouvé avec cette adresse email.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Mot de passe incorrect.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Adresse email invalide.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessage = 'Trop de tentatives. Réessayez plus tard.';
+                }
+                
+                showAlert(errorMessage, 'error');
+            }
+        });
+
+        // Écouter les changements d'authentification
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                console.log('Utilisateur connecté:', user.email);
+                
+                try {
+                    const userDoc = await getDoc(doc(db, 'users', user.uid));
+                    
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        displayUserDashboard(userData);
+                        
+                        if (userData.isAdmin) {
+                            document.getElementById('adminSection').classList.remove('hidden');
+                            await loadPendingUsers();
+                        }
+                    } else {
+                        console.log('Document utilisateur non trouvé');
+                        showAlert('Problème avec votre compte. Contactez le support.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Erreur lors du chargement du profil:', error);
+                    showAlert('Erreur lors du chargement du profil.', 'error');
+                }
+            } else {
+                currentUser = null;
+                document.getElementById('authSection').classList.remove('hidden');
+                document.getElementById('userDashboard').classList.add('hidden');
+                document.getElementById('adminSection').classList.add('hidden');
+            }
+        });
+
+        // Afficher le dashboard utilisateur
+        function displayUserDashboard(userData) {
+            document.getElementById('authSection').classList.add('hidden');
+            document.getElementById('userDashboard').classList.remove('hidden');
+            
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userBalance').textContent = `€ ${userData.balance.toFixed(2)}`;
+            
+            const statusElement = document.getElementById('userStatus');
+            statusElement.className = 'status-badge';
+            
+            switch(userData.status) {
+                case 'approved':
+                    statusElement.textContent = 'Compte validé ✅';
+                    statusElement.classList.add('status-approved');
+                    break;
+                case 'rejected':
+                    statusElement.textContent = 'Compte refusé ❌';
+                    statusElement.classList.add('status-rejected');
+                    break;
+                default:
+                    statusElement.textContent = 'En attente de validation ⏳';
+                    statusElement.classList.add('status-pending');
+            }
+        }
+
+        // Charger les utilisateurs en attente (admin)
+        window.loadPendingUsers = async function() {
+            const pendingUsersDiv = document.getElementById('pendingUsers');
+            
+            try {
+                pendingUsersDiv.innerHTML = '<div class="loading">Chargement...</div>';
+                
+                const q = query(collection(db, 'users'), where('status', '==', 'pending'));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    pendingUsersDiv.innerHTML = `
+                        <div style="text-align: center; color: #666; font-style: italic; padding: 20px;">
+                            Aucun utilisateur en attente de validation.
+                        </div>
+                    `;
+                    return;
+                }
+                
+                pendingUsersDiv.innerHTML = '<h4 style="margin-bottom: 15px;">Utilisateurs en attente de validation:</h4>';
+                
+                querySnapshot.forEach((doc) => {
+                    const userData = doc.data();
+                    const userCard = document.createElement('div');
+                    userCard.className = 'user-card';
+                    userCard.innerHTML = `
+                        <div class="user-card-header">
+                            <div class="user-info-admin">
+                                <h4>${userData.name}</h4>
+                                <p>📧 ${userData.email}</p>
+                                <p>📱 ${userData.phone}</p>
+                                <p>🌍 ${userData.country}</p>
+                                <p style="color: #856404;">⏳ En attente</p>
+                            </div>
+                            <div class="user-actions">
+                                <button class="btn btn-small btn-approve" onclick="approveUser('${doc.id}', '${userData.name}')">
+                                    ✅ Valider
+                                </button>
+                                <button class="btn btn-small btn-reject" onclick="rejectUser('${doc.id}', '${userData.name}')">
+                                    ❌ Refuser
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    pendingUsersDiv.appendChild(userCard);
+                });
+                
+                console.log(`${querySnapshot.size} utilisateurs en attente chargés`);
+                
+            } catch (error) {
+                console.error('Erreur lors du chargement:', error);
+                pendingUsersDiv.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Erreur lors du chargement des utilisateurs.</div>';
+                showAlert('Erreur lors du chargement: ' + error.message, 'error');
+            }
+        };
+
+        // Valider un utilisateur (admin)
+        window.approveUser = async function(userId, userName) {
+            if (!confirm(`Êtes-vous sûr de vouloir VALIDER le compte de ${userName} ?`)) {
+                return;
+            }
+            
+            try {
+                await updateDoc(doc(db, 'users', userId), {
+                    status: 'approved',
+                    approvedAt: new Date(),
+                    approvedBy: currentUser.email
+                });
+                showAlert(`✅ Compte de ${userName} validé avec succès!`, 'success');
+                await loadPendingUsers();
+                
+            } catch (error) {
+                console.error('Erreur validation:', error);
+                showAlert('Erreur lors de la validation: ' + error.message, 'error');
+            }
+        };
+
+        // Refuser un utilisateur (admin)
+        window.rejectUser = async function(userId, userName) {
+            if (!confirm(`Êtes-vous sûr de vouloir REFUSER le compte de ${userName} ?`)) {
+                return;
+            }
+            
+            try {
+                await updateDoc(doc(db, 'users', userId), {
+                    status: 'rejected',
+                    rejectedAt: new Date(),
+                    rejectedBy: currentUser.email
+                });
+                showAlert(`❌ Compte de ${userName} refusé.`, 'info');
+                await loadPendingUsers();
+                
+            } catch (error) {
+                console.error('Erreur refus:', error);
+                showAlert('Erreur lors du refus: ' + error.message, 'error');
+            }
+        };
+
+        window.refreshPendingUsers = loadPendingUsers;
+
+        // Déconnexion
+        window.logout = async function() {
+            try {
+                await signOut(auth);
+                showAlert('Déconnexion réussie', 'info');
+                document.getElementById('loginForm').reset();
+                
+            } catch (error) {
+                console.error('Erreur déconnexion:', error);
+                showAlert('Erreur de déconnexion: ' + error.message, 'error');
+            }
+        };
+
+        console.log('🔥 Interface bancaire chargée avec succès!');
+    </script>
+</body>
+</html>
