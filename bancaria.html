@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface Bancaire - Remit Online</title>
+    <title>Bancaria-Remit Online</title>
     <style>
         * {
             margin: 0;
@@ -304,7 +304,7 @@
 </head>
 <body>
     <a href="/" class="back-link">
-        ← Retour au site principal
+        ← Volver al Sitio
     </a>
 
     <div class="container">
@@ -323,20 +323,20 @@
             <!-- Formulaire de connexion -->
             <form id="loginForm" class="auth-form">
                 <div class="form-group">
-                    <label for="loginEmail">Email</label>
+                    <label for="loginEmail">Correo</label>
                     <input type="email" id="loginEmail" required placeholder="votre@email.com">
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">Mot de passe</label>
+                    <label for="loginPassword">Contraseña</label>
                     <input type="password" id="loginPassword" required placeholder="Votre mot de passe">
                 </div>
-                <button type="submit" class="btn">Se connecter</button>
+                <button type="submit" class="btn">Acceso</button>
             </form>
 
             <!-- Formulaire d'inscription -->
             <form id="registerForm" class="auth-form hidden">
                 <div class="form-group">
-                    <label for="registerName">Nom complet</label>
+                    <label for="registerName">Nombre Completo</label>
                     <input type="text" id="registerName" required placeholder="Jean Dupont">
                 </div>
                 <div class="form-group">
@@ -344,11 +344,11 @@
                     <input type="email" id="registerEmail" required placeholder="jean@exemple.com">
                 </div>
                 <div class="form-group">
-                    <label for="registerPhone">Téléphone</label>
+                    <label for="registerPhone">Telefono</label>
                     <input type="tel" id="registerPhone" required placeholder="+33 1 23 45 67 89">
                 </div>
                 <div class="form-group">
-                    <label for="registerCountry">Pays</label>
+                    <label for="registerCountry">Pais</label>
                     <select id="registerCountry" required>
                         <option value="">Sélectionnez votre pays</option>
                         <option value="FR">France</option>
@@ -358,7 +358,7 @@
                         <option value="MA">Maroc</option>
                         <option value="TN">Tunisie</option>
                         <option value="ES">Espagne</option>
-                        <option value="OTHER">Autre</option>
+                        <option value="OTHER">Otros</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -380,7 +380,7 @@
                 <div class="user-info">
                     <h3 id="userName">Nom de l'utilisateur</h3>
                     <p id="userEmail">email@exemple.com</p>
-                    <div class="balance" id="userBalance">€ 0.00</div>
+                    <div class="balance" id="userBalance">€10.00</div>
                     <div class="status-badge" id="userStatus">En attente de validation</div>
                 </div>
                 <button class="btn" onclick="logout()">Se déconnecter</button>
@@ -485,7 +485,7 @@
                     isAdmin: adminEmails.includes(email.toLowerCase())
                 });
 
-                showAlert('Compte créé avec succès! En attente de validation par un administrateur.', 'success');
+                showAlert('¡Cuenta creada correctamente! Esperando la validación del administrador.', 'success');
                 showTab('login');
                 document.getElementById('registerForm').reset();
                 
@@ -494,7 +494,7 @@
                 let errorMessage = 'Erreur lors de la création du compte.';
                 
                 if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'Cette adresse email est déjà utilisée.';
+                    errorMessage = 'Esta dirección de correo electrónico ya está en uso.';
                 } else if (error.code === 'auth/weak-password') {
                     errorMessage = 'Le mot de passe est trop faible.';
                 } else if (error.code === 'auth/invalid-email') {
@@ -522,7 +522,7 @@
                 let errorMessage = 'Erreur de connexion.';
                 
                 if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'Aucun compte trouvé avec cette adresse email.';
+                    errorMessage = 'No se encontró ninguna cuenta con esta dirección de correo electrónico.';
                 } else if (error.code === 'auth/wrong-password') {
                     errorMessage = 'Mot de passe incorrect.';
                 } else if (error.code === 'auth/invalid-email') {
@@ -582,7 +582,7 @@
             
             switch(userData.status) {
                 case 'approved':
-                    statusElement.textContent = 'Compte validé ✅';
+                    statusElement.textContent = 'Cuenta validada ✅';
                     statusElement.classList.add('status-approved');
                     break;
                 case 'rejected':
