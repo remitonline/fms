@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fms Remit Online - La Nueva Cara de las Finanzas desde 2010</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.4/css/flag-icons.min.css">
+    <style>
+        /* Reset CSS et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2e86c1;
+            --accent-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #e74c3c;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header et Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .signup-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .auth-buttons button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 80px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .hero-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .service-link i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+            width: 150px;
+            text-align: center;
+        }
+
+        /* E-commerce Section */
+        .ecommerce {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .product-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .author-info p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .contact-text p {
+            color: #666;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 134, 193, 0.2);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .footer-col.active .footer-links {
+            max-height: 500px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .language-selector {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-btn span {
+            margin-left: 10px;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            padding: 10px 15px;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .language-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .language-option span {
+            margin-left: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Auth Modal */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .auth-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .auth-container {
+            background-color: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(-50px);
+            transition: var(--transition);
+        }
+
+        .auth-modal.show .auth-container {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .auth-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .auth-tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-container {
+                padding: 15px;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .footer-col h3 {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .footer-col h3::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                position: static;
+                width: auto;
+                height: auto;
+                background: none;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btn {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 10px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .auth-buttons {
+                display: flex;
+            }
+
+            .auth-buttons button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .service-card, .product-card, .testimonial-card {
+                padding: 20px;
+            }
+        }
+        #google_translate_element {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+    opacity: 0.7;
+  background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+  z-index: 9999;
+}
+    #google_translate_element:hover {
+  opacity: 1.0;
+}
+    #google_translate_element select {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+     <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'es', // Langue d'origine de votre site
+      includedLanguages: 'en,fr,de,it,pt,ar', // Langues disponibles
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    },
+    'google_translate_element'
+  );
+}
+</script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-img">FMS</div>
+                <h1>Fms Remit Online</h1>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Google Translate Widget -->
+<div id="google_translate_element"></div>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#ecommerce">E-commerce</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="login-btn">Iniciar Sesión</button>
+                <button class="signup-btn">Registrarse</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h2>La Nueva Cara de las Finanzas desde 2010</h2>
+            <p>Ofrecemos servicios financieros, de e-commerce, inversión y bienes raíces con soluciones innovadoras y personalizadas para cada cliente.</p>
+            <div class="hero-buttons">
+                <a href="#servicios" button class="hero-btn primary-btn">Nuestros Servicios</button></a>
+                <a href="Bca.html" button class="hero-btn secondary-btn"> Banca en Línea</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <p>Descubre todos los servicios que ofrecemos para ayudarte a alcanzar tus metas financieras y de negocio.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Financement</h3>
+                    <p>Soluciones de financiamiento personalizadas para particulares y empresas con las mejores condiciones del mercado.</p>
+                    <a href="#" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <div class="promo-badge">Oferta</div>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Plataforma de comercio electrónico con los mejores productos y servicios a precios competitivos.</p>
+                    <a href="#" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <div class="promo-badge">Oferta</div>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Immobilier</h3>
+                    <p>Asesoramiento especializado en bienes raíces, compra, venta y alquiler de propiedades de alto valor.</p>
+                    <a href="#" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <div class="promo-badge">Oferta</div>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Investissement</h3>
+                    <p>Oportunidades de inversión diversificadas con altos rendimientos y asesoramiento profesional.</p>
+                    <a href="#" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <div class="promo-badge">Oferta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-commerce Section -->
+    <section class="ecommerce" id="ecommerce">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+                <p>Descubre los productos más vendidos en nuestra tienda online con envío a todo el mundo.</p>
+            </div>
+            <div class="products-grid">
+                <!-- Products will be loaded dynamically from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonios de Clientes</h2>
+                <p>Lo que nuestros clientes dicen sobre nuestros servicios y productos.</p>
+            </div>
+            <div class="testimonials-grid">
+                <!-- Testimonials will be loaded dynamically from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>Ponte en contacto con nosotros para más información sobre nuestros servicios.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Dirección</h4>
+                            <p>Avinguda Olivia, 543, Bajo 8°</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Teléfono</h4>
+                            <p>+33 7 55 54 78 38</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>fmsremitonline@proton.me</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Horario</h4>
+                            <p>Lun-Vie: 24h/24 - Sab-Dom: 9h-20h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Servicio de Interés</label>
+                            <select id="service" name="service" required>
+                                <option value="">Seleccione un servicio</option>
+                                <option value="financiamiento">Financiamiento</option>
+                                <option value="ecommerce">E-commerce</option>
+                                <option value="inmobiliario">Inmobiliario</option>
+                                <option value="inversion">Inversión</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Fms Remit Online</h3>
+                    <p>La Nueva Cara de las Finanzas desde 2010. Ofrecemos servicios financieros innovadores y personalizados para todos nuestros clientes.</p>
+                    <div class="social-links">
+                        <a href="https://www.tiktok.com/@jose.mendez.funda?_t=ZM-8xYdQVNvi6P&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://bsky.app/profile/remitbanco.bsky.social" target="_blank"><i class="fab fa-bluesky"></i></a>
+                        <a href="https://web.facebook.com/profile.php?id=61573121325241" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/message/4EJJXDHLKJAMP1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://youtube.com/@josemendezfoundation4869?si=Nv1Puju7auXZ8pB9" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                  <h3>Otros servicios</h3><p>Cuéntanoslo haciendo clic en tu red social preferida.</p>
+   
+                </div>
+                <div class="footer-col">
+                    <h3>Idioma</h3>
+                    <div class="language-selector">
+                        <div class="language-btn">
+                            <span class="fi fi-es"></span>
+                            <span>Español</span>
+                        </div>
+                        <div class="language-dropdown">
+                            <div class="language-option" data-lang="pt">
+                                <span class="fi fi-pt"></span>
+                                <span>Portugués</span>
+                            </div>
+                            <div class="language-option" data-lang="de">
+                                <span class="fi fi-de"></span>
+                                <span>Alemán</span>
+                            </div>
+                            <div class="language-option" data-lang="en">
+                                <span class="fi fi-gb"></span>
+                                <span>Inglés</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="footer-info">Suscríbete a nuestro boletín para recibir actualizaciones:</p>
+                    <form id="newsletterForm">
+                        <div class="form-group">
+                            <input type="email" placeholder="Tu email" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Fms Remit Online. Todos los derechos reservados. | <a href="#" id="privacyLink">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Iniciar Sesión</div>
+                <div class="auth-tab" data-tab="signup">Registrarse</div>
+            </div>
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Iniciar Sesión</button>
+            </form>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Nombre Completo</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Contraseña</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Contraseña</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="auth-modal" id="privacyModal">
+        <div class="auth-container" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+            <button class="close-modal" id="closePrivacyModal">&times;</button>
+            <h2>Política de Privacidad</h2>
+            <div style="margin-top: 20px;">
+                <h3>1. Introducción</h3>
+                <p>En Fms Remit Online, valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta política explica cómo recopilamos, usamos y compartimos su información.</p>
+                
+                <h3>2. Información que recopilamos</h3>
+                <p>Recopilamos información que usted nos proporciona directamente, como cuando crea una cuenta, realiza una compra o se contacta con nosotros.</p>
+                
+                <h3>3. Uso de la información</h3>
+                <p>Utilizamos su información para proporcionar nuestros servicios, procesar transacciones y comunicarnos con usted sobre nuestros productos y servicios.</p>
+                
+                <h3>4. Compartir información</h3>
+                <p>No vendemos ni alquilamos su información personal a terceros. Solo compartimos información con proveedores de servicios que nos ayudan a operar nuestro negocio.</p>
+                
+                <h3>5. Seguridad</h3>
+                <p>Implementamos medidas de seguridad para proteger su información personal contra accesos no autorizados y alteraciones.</p>
+                
+                <h3>6. Sus derechos</h3>
+                <p>Tiene derecho a acceder, corregir o eliminar su información personal. Puede contactarnos en cualquier momento para ejercer estos derechos.</p>
+                
+                <h3>7. Cambios a esta política</h3>
+                <p>Podemos actualizar esta política ocasionalmente. Le notificaremos sobre cambios significativos publicando la nueva política en nuestro sitio.</p>
+                
+                <h3>8. Contacto</h3>
+                <p>Si tiene preguntas sobre esta política, puede contactarnos en remitonline@proton.me o al +33 7 55 54 78 38.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyClPIcf1yKTYGNUTypdbebSVcnbNNxMDkU",
+  authDomain: "remit-online.firebaseapp.com",
+  projectId: "remit-online",
+  storageBucket: "remit-online.firebasestorage.app",
+  messagingSenderId: "652492874046",
+  appId: "1:652492874046:web:f597773576981c3a774c6f",
+  measurementId: "G-ER8YCCBS85"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+      
+        // Translation data
+        const translations = {
+            es: {
+                // Navigation
+                "home": "Inicio",
+                "services": "Servicios",
+                "ecommerce": "E-commerce",
+                "testimonials": "Testimonios",
+                "contact": "Contacto",
+                "login": "Iniciar Sesión",
+                "signup": "Registrarse",
+                
+                // Hero section
+                "heroTitle": "La Nueva Cara de las Finanzas desde 2010",
+                "heroText": "Ofrecemos servicios financieros, de e-commerce, inversión y bienes raíces con soluciones innovadoras y personalizadas para cada cliente.",
+                "ourServices": "Nuestros Servicios",
+                "contactNow": "Contactar Ahora",
+                
+                // Services section
+                "servicesTitle": "Nuestros Servicios",
+                "servicesText": "Descubre todos los servicios que ofrecemos para ayudarte a alcanzar tus metas financieras y de negocio.",
+                "finance": "Financement",
+                "financeText": "Soluciones de financiamiento personalizadas para particulares y empresas con las mejores condiciones del mercado.",
+                "ecommerceText": "Plataforma de comercio electrónico con los mejores productos y servicios a precios competitivos.",
+                "realEstate": "Immobilier",
+                "realEstateText": "Asesoramiento especializado en bienes raíces, compra, venta y alquiler de propiedades de alto valor.",
+                "investment": "Investissement",
+                "investmentText": "Oportunidades de inversión diversificadas con altos rendimientos y asesoramiento profesional.",
+                "learnMore": "Saber más",
+                
+                // Products section
+                "productsTitle": "Nuestros Productos",
+                "productsText": "Descubre los productos más vendidos en nuestra tienda online con envío a todo el mundo.",
+                "addToCart": "Añadir al Carrito",
+                
+                // Testimonials section
+                "testimonialsTitle": "Testimonios de Clientes",
+                "testimonialsText": "Lo que nuestros clientes dicen sobre nuestros servicios y productos.",
+                
+                // Contact section
+                "contactTitle": "Contacto",
+                "contactText": "Ponte en contacto con nosotros para más información sobre nuestros servicios.",
+                "address": "Dirección",
+                "phone": "Teléfono",
+                "email": "Email",
+                "schedule": "Horario",
+                "fullName": "Nombre Completo",
+                "serviceInterest": "Servicio de Interés",
+                "selectService": "Seleccione un servicio",
+                "financing": "Financiamiento",
+                "realEstateOption": "Inmobiliario",
+                "investmentOption": "Inversión",
+                "message": "Mensaje",
+                "sendMessage": "Enviar Mensaje",
+                
+                // Footer
+                "newsletter": "Suscríbete a nuestro boletín para recibir actualizaciones:",
+                "subscribe": "Suscribirse",
+                "rightsReserved": "Todos los derechos reservados.",
+                "privacyPolicy": "Política de Privacidad",
+                "terms": "Términos y Condiciones",
+                
+                // Auth modals
+                "loginTitle": "Iniciar Sesión",
+                "signupTitle": "Registrarse",
+                "password": "Contraseña",
+                "confirmPassword": "Confirmar Contraseña"
+            },
+            en: {
+                // Navigation
+                "home": "Home",
+                "services": "Services",
+                "ecommerce": "E-commerce",
+                "testimonials": "Testimonials",
+                "contact": "Contact",
+                "login": "Login",
+                "signup": "Sign Up",
+                
+                // Hero section
+                "heroTitle": "The New Face of Finance since 2010",
+                "heroText": "We offer financial, e-commerce, investment and real estate services with innovative and personalized solutions for each client.",
+                "ourServices": "Our Services",
+                "contactNow": "Contact Now",
+                
+                // Services section
+                "servicesTitle": "Our Services",
+                "servicesText": "Discover all the services we offer to help you achieve your financial and business goals.",
+                "finance": "Financing",
+                "financeText": "Customized financing solutions for individuals and businesses with the best market conditions.",
+                "ecommerceText": "E-commerce platform with the best products and services at competitive prices.",
+                "realEstate": "Real Estate",
+                "realEstateText": "Specialized advice on real estate, purchase, sale and rental of high-value properties.",
+                "investment": "Investment",
+                "investmentText": "Diversified investment opportunities with high returns and professional advice.",
+                "learnMore": "Learn more",
+                
+                // Products section
+                "productsTitle": "Our Products",
+                "productsText": "Discover the best-selling products in our online store with worldwide shipping.",
+                "addToCart": "Add to Cart",
+                
+                // Testimonials section
+                "testimonialsTitle": "Customer Testimonials",
+                "testimonialsText": "What our customers say about our services and products.",
+                
+                // Contact section
+                "contactTitle": "Contact",
+                "contactText": "Contact us for more information about our services.",
+                "address": "Address",
+                "phone": "Phone",
+                "email": "Email",
+                "schedule": "Schedule",
+                "fullName": "Full Name",
+                "serviceInterest": "Service of Interest",
+                "selectService": "Select a service",
+                "financing": "Financing",
+                "realEstateOption": "Real Estate",
+                "investmentOption": "Investment",
+                "message": "Message",
+                "sendMessage": "Send Message",
+                
+                // Footer
+                "newsletter": "Subscribe to our newsletter to receive updates:",
+                "subscribe": "Subscribe",
+                "rightsReserved": "All rights reserved.",
+                "privacyPolicy": "Privacy Policy",
+                "terms": "Terms and Conditions",
+                
+                // Auth modals
+                "loginTitle": "Login",
+                "signupTitle": "Sign Up",
+                "password": "Password",
+                "confirmPassword": "Confirm Password"
+            },
+            fr: {
+                // Navigation
+                "home": "Accueil",
+                "services": "Services",
+                "ecommerce": "E-commerce",
+                "testimonials": "Témoignages",
+                "contact": "Contact",
+                "login": "Connexion",
+                "signup": "Inscription",
+                
+                // Hero section
+                "heroTitle": "Le Nouveau Visage de la Finance depuis 2010",
+                "heroText": "Nous proposons des services financiers, e-commerce, d'investissement et immobiliers avec des solutions innovantes et personnalisées pour chaque client.",
+                "ourServices": "Nos Services",
+                "contactNow": "Contactez Maintenant",
+                
+                // Services section
+                "servicesTitle": "Nos Services",
+                "servicesText": "Découvrez tous les services que nous proposons pour vous aider à atteindre vos objectifs financiers et commerciaux.",
+                "finance": "Financement",
+                "financeText": "Solutions de financement personnalisées pour les particuliers et les entreprises avec les meilleures conditions du marché.",
+                "ecommerceText": "Plateforme de commerce électronique avec les meilleurs produits et services à des prix compétitifs.",
+                "realEstate": "Immobilier",
+                "realEstateText": "Conseils spécialisés en immobilier, achat, vente et location de propriétés de haute valeur.",
+                "investment": "Investissement",
+                "investmentText": "Opportunités d'investissement diversifiées avec des rendements élevés et des conseils professionnels.",
+                "learnMore": "En savoir plus",
+                
+                // Products section
+                "productsTitle": "Nos Produits",
+                "productsText": "Découvrez les produits les plus vendus dans notre boutique en ligne avec livraison dans le monde entier.",
+                "addToCart": "Ajouter au Panier",
+                
+                // Testimonials section
+                "testimonialsTitle": "Témoignages de Clients",
+                "testimonialsText": "Ce que nos clients disent de nos services et produits.",
+                
+                // Contact section
+                "contactTitle": "Contact",
+                "contactText": "Contactez-nous pour plus d'informations sur nos services.",
+                "address": "Adresse",
+                "phone": "Téléphone",
+                "email": "Email",
+                "schedule": "Horaire",
+                "fullName": "Nom Complet",
+                "serviceInterest": "Service d'Intérêt",
+                "selectService": "Sélectionnez un service",
+                "financing": "Financement",
+                "realEstateOption": "Immobilier",
+                "investmentOption": "Investissement",
+                "message": "Message",
+                "sendMessage": "Envoyer le Message",
+                
+                // Footer
+                "newsletter": "Abonnez-vous à notre newsletter pour recevoir des mises à jour:",
+                "subscribe": "S'abonner",
+                "rightsReserved": "Tous droits réservés.",
+                "privacyPolicy": "Politique de Confidentialité",
+                "terms": "Termes et Conditions",
+                
+                // Auth modals
+                "loginTitle": "Connexion",
+                "signupTitle": "Inscription",
+                "password": "Mot de Passe",
+                "confirmPassword": "Confirmer le Mot de Passe"
+            },
+            pt: {
+                // Navigation
+                "home": "Início",
+                "services": "Serviços",
+                "ecommerce": "E-commerce",
+                "testimonials": "Depoimentos",
+                "contact": "Contato",
+                "login": "Entrar",
+                "signup": "Registrar",
+                
+                // Hero section
+                "heroTitle": "A Nova Face das Finanças desde 2010",
+                "heroText": "Oferecemos serviços financeiros, e-commerce, investimento e imobiliários com soluções inovadoras e personalizadas para cada cliente.",
+                "ourServices": "Nossos Serviços",
+                "contactNow": "Contate Agora",
+                
+                // Services section
+                "servicesTitle": "Nossos Serviços",
+                "servicesText": "Descubra todos os serviços que oferecemos para ajudá-lo a alcançar seus objetivos financeiros e de negócios.",
+                "finance": "Financiamento",
+                "financeText": "Soluções de financiamento personalizadas para indivíduos e empresas com as melhores condições do mercado.",
+                "ecommerceText": "Plataforma de comércio eletrônico com os melhores produtos e serviços a preços competitivos.",
+                "realEstate": "Imobiliário",
+                "realEstateText": "Aconselhamento especializado em imóveis, compra, venda e aluguel de propriedades de alto valor.",
+                "investment": "Investimento",
+                "investmentText": "Oportunidades de investimento diversificadas com altos retornos e aconselhamento profissional.",
+                "learnMore": "Saiba mais",
+                
+                // Products section
+                "productsTitle": "Nossos Produtos",
+                "productsText": "Descubra os produtos mais vendidos em nossa loja online com entrega para todo o mundo.",
+                "addToCart": "Adicionar ao Carrinho",
+                
+                // Testimonials section
+                "testimonialsTitle": "Depoimentos de Clientes",
+                "testimonialsText": "O que nossos clientes dizem sobre nossos serviços e produtos.",
+                
+                // Contact section
+                "contactTitle": "Contato",
+                "contactText": "Entre em contato conosco para mais informações sobre nossos serviços.",
+                "address": "Endereço",
+                "phone": "Telefone",
+                "email": "Email",
+                "schedule": "Horário",
+                "fullName": "Nome Completo",
+                "serviceInterest": "Serviço de Interesse",
+                "selectService": "Selecione um serviço",
+                "financing": "Financiamento",
+                "realEstateOption": "Imobiliário",
+                "investmentOption": "Investimento",
+                "message": "Mensagem",
+                "sendMessage": "Enviar Mensagem",
+                
+                // Footer
+                "newsletter": "Inscreva-se em nossa newsletter para receber atualizações:",
+                "subscribe": "Inscrever-se",
+                "rightsReserved": "Todos os direitos reservados.",
+                "privacyPolicy": "Política de Privacidade",
+                "terms": "Termos e Condições",
+                
+                // Auth modals
+                "loginTitle": "Entrar",
+                "signupTitle": "Registrar",
+                "password": "Senha",
+                "confirmPassword": "Confirmar Senha"
+            }
+        };
+
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Auriculares Premium",
+                description: "Auriculares con cancelación de ruido y sonido de alta calidad.",
+                price: 129.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                name: "Reloj Inteligente",
+                description: "Reloj inteligente con monitor de actividad y notificaciones.",
+                price: 199.99,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                name: "Zapatillas Deportivas",
+                description: "Zapatillas ligeras y cómodas para running y entrenamiento.",
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                name: "Cámara DSLR Profesional",
+                description: "Cámara réflex digital con lente intercambiable y 24.2 MP.",
+                price: 749.99,
+                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                name: "Altavoz Bluetooth",
+                description: "Altavoz portátil resistente al agua con sonido estéreo.",
+                price: 79.99,
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 6,
+                name: "Tablet Android",
+                description: "Tablet de 10 pulgadas con 64 GB de almacenamiento y 4 GB de RAM.",
+                price: 299.99,
+                image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 7,
+                name: "Teclado Mecánico",
+                description: "Teclado gaming mecánico con retroiluminación RGB personalizable.",
+                price: 119.99,
+                image: "https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 8,
+                name: "Monitor 4K",
+                description: "Monitor gaming de 27 pulgadas con resolución 4K y 144Hz.",
+                price: 499.99,
+                image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 9,
+                name: "Mochila para Laptop",
+                description: "Mochila resistente al agua con compartimento para laptop de 15.6\".",
+                price: 59.99,
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 10,
+                name: "Smartphone Flagship",
+                description: "Teléfono inteligente con cámara de 108 MP y 256 GB de almacenamiento.",
+                price: 899.99,
+                image: "https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 11,
+                name: "Consola de Videojuegos",
+                description: "Última generación de consola con 1 TB de almacenamiento SSD.",
+                price: 499.99,
+                image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 12,
+                name: "Impresora Multifunción",
+                description: "Impresora láser a color con escáner y copiadora integrados.",
+                price: 249.99,
+                image: "https://images.unsplash.com/photo-1598440947619-2c6fcbc80f6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 13,
+                name: "Drone con Cámara 4K",
+                description: "Drone plegable con cámara 4K y tiempo de vuelo de 30 minutos.",
+                price: 399.99,
+                image: "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 14,
+                name: "Smartwatch Deportivo",
+                description: "Reloj inteligente con GPS, monitor de frecuencia cardíaca y resistencia al agua.",
+                price: 179.99,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 15,
+                name: "Cafetera Automática",
+                description: "Cafetera automática con molinillo integrado y preparación programable.",
+                price: 149.99,
+                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        // Testimonials data
+        const testimonials = [
+            {
+                name: "Maria López",
+                country: "España",
+                text: "He utilizado sus servicios de inversión y he obtenido excelentes rendimientos. Profesionales y confiables.",
+                avatar: "https://randomuser.me/api/portraits/women/65.jpg"
+            },
+            {
+                name: "Carlos Rodríguez",
+                country: "México",
+                text: "La plataforma de e-commerce es excelente, productos de calidad y entrega rápida. Muy recomendable.",
+                avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+            },
+            {
+                name: "Elena Smith",
+                country: "Reino Unido",
+                text: "Asesoramiento inmobiliario excepcional. Me ayudaron a encontrar la propiedad perfecta para mi familia.",
+                avatar: "https://randomuser.me/api/portraits/women/45.jpg"
+            },
+            {
+                name: "Pierre Dubois",
+                country: "Francia",
+                text: "J'ai investi grâce à leurs conseils et j'ai déjà vu un retour sur investissement en seulement 6 mois.",
+                avatar: "https://randomuser.me/api/portraits/men/22.jpg"
+            },
+            {
+                name: "Sophie Müller",
+                country: "Alemania",
+                text: "Der Einkauf auf ihrer Plattform war reibungslos und die Produktqualität ist ausgezeichnet.",
+                avatar: "https://randomuser.me/api/portraits/women/33.jpg"
+            },
+            {
+                name: "John Wilson",
+                country: "Estados Unidos",
+                text: "Their financing options helped me expand my business when traditional banks turned me down.",
+                avatar: "https://randomuser.me/api/portraits/men/76.jpg"
+            },
+            {
+                name: "Laura Bianchi",
+                country: "Italia",
+                text: "Servizio clienti eccellente e tempi di consegna molto rapidi. Sicuramente continuerò a acquistare da loro.",
+                avatar: "https://randomuser.me/api/portraits/women/50.jpg"
+            },
+            {
+                name: "Miguel Santos",
+                country: "Portugal",
+                text: "Conseguiram o melhor financiamento para o meu projeto com taxas muito competitivas.",
+                avatar: "https://randomuser.me/api/portraits/men/57.jpg"
+            },
+            {
+                name: "Anna Nowak",
+                country: "Polonia",
+                text: "Szybka dostawa i doskonała obsługa klienta. Produkty są wysokiej jakości w konkurencyjnych cenach.",
+                avatar: "https://randomuser.me/api/portraits/women/28.jpg"
+            },
+            {
+                name: "Alexander Petrov",
+                country: "Rusia",
+                text: "Очень профессиональная команда. Они помогли мне инвестировать в недвижимость в Испании без проблем.",
+                avatar: "https://randomuser.me/api/portraits/men/37.jpg"
+            },
+            {
+                name: "Yuki Tanaka",
+                country: "Japón",
+                text: "金融サービスが非常に信頼性が高く、投資アドバイスが的確でした。",
+                avatar: "https://randomuser.me/api/portraits/women/29.jpg"
+            },
+            {
+                name: "Chen Wei",
+                country: "China",
+                text: "他们的电子商务平台产品种类繁多，送货服务也很高效。",
+                avatar: "https://randomuser.me/api/portraits/men/83.jpg"
+            },
+            {
+                name: "Isabella Rossi",
+                country: "Brasil",
+                text: "Consegui um ótimo financiamento para meu apartamento com condições melhores que as do mercado.",
+                avatar: "https://randomuser.me/api/portraits/women/63.jpg"
+            },
+            {
+                name: "David Johnson",
+                country: "Canadá",
+                text: "The investment opportunities they offered have outperformed my expectations significantly.",
+                avatar: "https://randomuser.me/api/portraits/men/35.jpg"
+            },
+            {
+                name: "Fatima Zahra",
+                country: "Marruecos",
+                text: "لقد ساعدوني في الحصول على تمويل لمشروعي الصغير بشروط ميسرة جدا.",
+                avatar: "https://randomuser.me/api/portraits/women/71.jpg"
+            }
+        ];
+
+        // Current language
+        let currentLang = 'es';
+
+        // DOM elements
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        const backToTopBtn = document.querySelector('.back-to-top');
+        const authModal = document.getElementById('authModal');
+        const loginBtn = document.querySelector('.login-btn');
+        const signupBtn = document.querySelector('.signup-btn');
+        const closeModalBtn = document.getElementById('closeModal');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+        const languageOptions = document.querySelectorAll('.language-option');
+        const contactForm = document.getElementById('contactForm');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const privacyLink = document.getElementById('privacyLink');
+        const privacyModal = document.getElementById('privacyModal');
+        const closePrivacyModal = document.getElementById('closePrivacyModal');
+        const footerCols = document.querySelectorAll('.footer-col');
+
+        // Initialize the page
+        function init() {
+            loadProducts();
+            loadTestimonials();
+            setupEventListeners();
+            setupFirebaseAuth();
+            checkAuthState();
+        }
+
+        // Load products into the page
+        function loadProducts() {
+            const productsGrid = document.querySelector('.products-grid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card fade-in';
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-price">€${product.price.toFixed(2)}</div>
+                        <button class="product-btn" data-id="${product.id}">${translations[currentLang].addToCart}</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Add event listeners to product buttons
+            document.querySelectorAll('.product-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    const product = products.find(p => p.id == productId);
+                    addToCart(product);
+                });
+            });
+        }
+
+        // Load testimonials into the page
+        function loadTestimonials() {
+            const testimonialsGrid = document.querySelector('.testimonials-grid');
+            testimonialsGrid.innerHTML = '';
+            
+            testimonials.forEach(testimonial => {
+                const testimonialCard = document.createElement('div');
+                testimonialCard.className = 'testimonial-card fade-in';
+                testimonialCard.innerHTML = `
+                    <p class="testimonial-text">"${testimonial.text}"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="${testimonial.avatar}" alt="${testimonial.name}">
+                        </div>
+                        <div class="author-info">
+                            <h4>${testimonial.name}</h4>
+                            <p>${testimonial.country}</p>
+                        </div>
+                    </div>
+                `;
+                testimonialsGrid.appendChild(testimonialCard);
+            });
+        }
+
+        // Setup all event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+            });
+
+            // Back to top button
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Auth modal
+            loginBtn.addEventListener('click', () => {
+                authModal.classList.add('show');
+                switchAuthTab('login');
+            });
+
+            signupBtn.addEventListener('click', () => {
+                authModal.classList.add('show');
+                switchAuthTab('signup');
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                authModal.classList.remove('show');
+            });
+
+            authModal.addEventListener('click', (e) => {
+                if (e.target === authModal) {
+                    authModal.classList.remove('show');
+                }
+            });
+
+            // Auth tabs
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabName = tab.getAttribute('data-tab');
+                    switchAuthTab(tabName);
+                });
+            });
+
+            // Language selector
+            languageOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const lang = option.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+
+            // Forms
+            contactForm.addEventListener('submit', handleContactForm);
+            newsletterForm.addEventListener('submit', handleNewsletterForm);
+
+            // Privacy policy
+            privacyLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                privacyModal.classList.add('show');
+            });
+
+            closePrivacyModal.addEventListener('click', () => {
+                privacyModal.classList.remove('show');
+            });
+
+            privacyModal.addEventListener('click', (e) => {
+                if (e.target === privacyModal) {
+                    privacyModal.classList.remove('show');
+                }
+            });
+
+            // Footer accordion on mobile
+            if (window.innerWidth <= 992) {
+                footerCols.forEach(col => {
+                    const heading = col.querySelector('h3');
+                    heading.addEventListener('click', () => {
+                        col.classList.toggle('active');
+                    });
+                });
+            }
+
+            // Fade-in animation on scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        }
+
+        // Switch between login and signup tabs
+        function switchAuthTab(tabName) {
+            authTabs.forEach(tab => {
+                if (tab.getAttribute('data-tab') === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            authForms.forEach(form => {
+                if (form.id === `${tabName}Form`) {
+                    form.classList.add('active');
+                } else {
+                    form.classList.remove('active');
+                }
+            });
+        }
+
+        // Change language
+        function changeLanguage(lang) {
+            if (translations[lang]) {
+                currentLang = lang;
+                updateTextContent();
+            }
+        }
+
+        // Update all text content based on current language
+        function updateTextContent() {
+            // Update navigation
+            document.querySelectorAll('nav a').forEach((link, index) => {
+                const keys = ['home', 'services', 'ecommerce', 'testimonials', 'contact'];
+                if (index < keys.length) {
+                    link.textContent = translations[currentLang][keys[index]];
+                }
+            });
+
+            // Update auth buttons
+            document.querySelector('.login-btn').textContent = translations[currentLang].login;
+            document.querySelector('.signup-btn').textContent = translations[currentLang].signup;
+
+            // Update hero section
+            document.querySelector('.hero h2').textContent = translations[currentLang].heroTitle;
+            document.querySelector('.hero p').textContent = translations[currentLang].heroText;
+            document.querySelector('.primary-btn').textContent = translations[currentLang].ourServices;
+            document.querySelector('.secondary-btn').textContent = translations[currentLang].contactNow;
+
+            // Update services section
+            document.querySelector('.services .section-title h2').textContent = translations[currentLang].servicesTitle;
+            document.querySelector('.services .section-title p').textContent = translations[currentLang].servicesText;
+            
+            const serviceCards = document.querySelectorAll('.service-card');
+            const serviceKeys = ['finance', 'ecommerceText', 'realEstate', 'investment'];
+            serviceCards.forEach((card, index) => {
+                const title = card.querySelector('h3');
+                const text = card.querySelector('p');
+                const link = card.querySelector('.service-link');
+                
+                if (index === 0) {
+                    title.textContent = translations[currentLang].finance;
+                    text.textContent = translations[currentLang].financeText;
+                } else if (index === 1) {
+                    title.textContent = translations[currentLang].ecommerce;
+                    text.textContent = translations[currentLang].ecommerceText;
+                } else if (index === 2) {
+                    title.textContent = translations[currentLang].realEstate;
+                    text.textContent = translations[currentLang].realEstateText;
+                } else if (index === 3) {
+                    title.textContent = translations[currentLang].investment;
+                    text.textContent = translations[currentLang].investmentText;
+                }
+                
+                link.innerHTML = `${translations[currentLang].learnMore} <i class="fas fa-arrow-right"></i>`;
+            });
+
+            // Update products section
+            document.querySelector('.ecommerce .section-title h2').textContent = translations[currentLang].productsTitle;
+            document.querySelector('.ecommerce .section-title p').textContent = translations[currentLang].productsText;
+            document.querySelectorAll('.product-btn').forEach(btn => {
+                btn.textContent = translations[currentLang].addToCart;
+            });
+
+            // Update testimonials section
+            document.querySelector('.testimonials .section-title h2').textContent = translations[currentLang].testimonialsTitle;
+            document.querySelector('.testimonials .section-title p').textContent = translations[currentLang].testimonialsText;
+
+            // Update contact section
+            document.querySelector('.contact .section-title h2').textContent = translations[currentLang].contactTitle;
+            document.querySelector('.contact .section-title p').textContent = translations[currentLang].contactText;
+            
+            const contactDetails = document.querySelectorAll('.contact-text h4');
+            contactDetails[0].textContent = translations[currentLang].address;
+            contactDetails[1].textContent = translations[currentLang].phone;
+            contactDetails[2].textContent = translations[currentLang].email;
+            contactDetails[3].textContent = translations[currentLang].schedule;
+            
+            const formLabels = document.querySelectorAll('.contact-form label');
+            formLabels[0].textContent = translations[currentLang].fullName;
+            formLabels[1].textContent = translations[currentLang].email;
+            formLabels[2].textContent = translations[currentLang].serviceInterest;
+            formLabels[3].textContent = translations[currentLang].message;
+            
+            document.querySelector('#service option[value=""]').textContent = translations[currentLang].selectService;
+            document.querySelector('#service option[value="financiamiento"]').textContent = translations[currentLang].financing;
+            document.querySelector('#service option[value="ecommerce"]').textContent = translations[currentLang].ecommerce;
+            document.querySelector('#service option[value="inmobiliario"]').textContent = translations[currentLang].realEstateOption;
+            document.querySelector('#service option[value="inversion"]').textContent = translations[currentLang].investmentOption;
+            
+            document.querySelector('.contact-form .submit-btn').textContent = translations[currentLang].sendMessage;
+
+            // Update footer
+            const footerTitles = document.querySelectorAll('.footer-col h3');
+            footerTitles[1].textContent = translations[currentLang].services;
+            footerTitles[2].textContent = translations[currentLang].services;
+            
+            document.querySelector('.footer-info').textContent = translations[currentLang].newsletter;
+            document.querySelector('#newsletterForm .submit-btn').textContent = translations[currentLang].subscribe;
+            
+            const copyrightLinks = document.querySelectorAll('.copyright a');
+            copyrightLinks[0].textContent = translations[currentLang].privacyPolicy;
+            copyrightLinks[1].textContent = translations[currentLang].terms;
+            
+            document.querySelector('.copyright p').innerHTML = `&copy; 2023 Fms Remit Online. ${translations[currentLang].rightsReserved} | <a href="#" id="privacyLink">${translations[currentLang].privacyPolicy}</a> | <a href="#">${translations[currentLang].terms}</a>`;
+
+            // Update auth modal
+            authTabs[0].textContent = translations[currentLang].loginTitle;
+            authTabs[1].textContent = translations[currentLang].signupTitle;
+            
+            const loginLabels = document.querySelectorAll('#loginForm label');
+            loginLabels[0].textContent = translations[currentLang].email;
+            loginLabels[1].textContent = translations[currentLang].password;
+            document.querySelector('#loginForm .submit-btn').textContent = translations[currentLang].loginTitle;
+            
+            const signupLabels = document.querySelectorAll('#signupForm label');
+            signupLabels[0].textContent = translations[currentLang].fullName;
+            signupLabels[1].textContent = translations[currentLang].email;
+            signupLabels[2].textContent = translations[currentLang].password;
+            signupLabels[3].textContent = translations[currentLang].confirmPassword;
+            document.querySelector('#signupForm .submit-btn').textContent = translations[currentLang].signupTitle;
+        }
+
+        // Setup Firebase authentication
+        function setupFirebaseAuth() {
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        authModal.classList.remove('show');
+                        alert(`${translations[currentLang].loginTitle} successful!`);
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            // Signup form
+            document.getElementById('signupForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert("Passwords don't match");
+                    return;
+                }
+                
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        
+                        // Save user data to Firestore
+                        return db.collection('users').doc(user.uid).set({
+                            name: name,
+                            email: email,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    })
+                    .then(() => {
+                        authModal.classList.remove('show');
+                        alert(`${translations[currentLang].signupTitle} successful!`);
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+        }
+
+        // Check authentication state
+        function checkAuthState() {
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                     loginBtn.textContent = "";
+                    signupBtn.textContent = "Cerrar Sesión";
+                    
+                    signupBtn.addEventListener('click', () => {
+                        auth.signOut()
+                            .then(() => {
+                                alert("Sesión cerrada correctamente");
+                                location.reload();
+                            })
+                            .catch((error) => {
+                                alert(error.message);
+                            });
+                    });
+                }
+            });
+        }
+
+        // Handle contact form submission
+        function handleContactForm(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            
+            fetch('https://formspree.io/f/xblknjnk', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Mensaje enviado correctamente');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Error al enviar el mensaje');
+                }
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        }
+
+        // Handle newsletter form submission
+        function handleNewsletterForm(e) {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]').value;
+            
+            db.collection('newsletter').add({
+                email: email,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                alert('¡Gracias por suscribirte!');
+                newsletterForm.reset();
+            })
+            .catch((error) => {
+                alert('Error al suscribirse: ' + error.message);
+            });
+        }
+
+        // Add product to cart
+        function addToCart(product) {
+            const user = auth.currentUser;
+            
+            if (user) {
+                db.collection('carts').doc(user.uid).collection('items').doc(product.id.toString()).set({
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: firebase.firestore.FieldValue.increment(1),
+                    addedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true })
+                .then(() => {
+                    alert(`${product.name} añadido al carrito`);
+                })
+                .catch((error) => {
+                    alert('Error al añadir al carrito: ' + error.message);
+                });
+            } else {
+                alert('Por favor, inicia sesión para añadir productos al carrito');
+                authModal.classList.add('show');
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
